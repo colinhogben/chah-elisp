@@ -2,11 +2,14 @@
 ;;	Functions and key bindings for chah
 ;;=======================================================================
 
+(defvar chah-location 'unknown
+  "Token indicating where we are, for later location-specific customisation.")
+
 (defun chah ()
   "Pull in chah definitions."
   (interactive)
 
-  ;; Should generate autoloads for site-lisp ?
+  ;; Should generate autoloads for elisp ?
   (autoload (quote comment-block) "comment-block" "\
 Insert a comment block for use in routine headers, etc.
 If THICK is non-nil then use === rather than ---." t nil)
@@ -49,5 +52,6 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
   ;; In absence of autoload machinery, load stuff directly
-  (load "chah-ftp" nil t)
+  (if (memq chah-location '(pepperpot mythic))
+      (load "chah-ftp" nil t))
 )
