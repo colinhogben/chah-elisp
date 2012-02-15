@@ -159,3 +159,35 @@ If found, the point will be placed following the routine name."
       (progn
 	(goto-char here)
 	(error "Routine %s not found" name)))))
+
+(defun sh-find-routine (name)
+  "Find the specified routine name in the current buffer.
+If found, the point will be placed following the routine name."
+  (interactive "sFind routine: ")
+  (let* ((here (point))
+	 (case-fold-search nil))
+    (goto-char (point-min))
+    (if (re-search-forward
+	 (concat "^" (regexp-quote name) "\\w*()")
+	 (point-max) t)
+	(progn
+	  (skip-chars-backward "()")
+	  (push-mark here))
+      (progn
+	(goto-char here)
+	(error "Routine %s not found" name)))))
+
+(defun python-find-routine (name)
+  "Find the specified function or class name in the current buffer.
+If found, the point will be placed following the routine name."
+  (interactive "sFind routine: ")
+  (let* ((here (point))
+	 (case-fold-search nil))
+    (goto-char (point-min))
+    (if (re-search-forward
+	 (concat "^[ \t]*\\(def\\|class\\)[ \t]+" (regexp-quote name))
+	 (point-max) t)
+	(push-mark here)
+      (progn
+	(goto-char here)
+	(error "Routine %s not found" name)))))

@@ -2,11 +2,14 @@
 ;;	Functions and key bindings for chah
 ;;=======================================================================
 
+(defvar chah-location 'unknown
+  "Token indicating where we are, for later location-specific customisation.")
+
 (defun chah ()
   "Pull in chah definitions."
   (interactive)
 
-  ;; Should generate autoloads for site-lisp ?
+  ;; Should generate autoloads for elisp ?
   (autoload (quote comment-block) "comment-block" "\
 Insert a comment block for use in routine headers, etc.
 If THICK is non-nil then use === rather than ---." t nil)
@@ -21,6 +24,9 @@ Move to the specified routine or line number." t nil)
   (setq dired-dwim-target t)		;; Guess other buffer when copying
 
   ;; Colin's extra bindings
+  ;; Make F12 behave like C-x - most important ergonomic improvement
+  (global-set-key [f12] 'Control-X-prefix)
+
   (global-set-key [f2] 'find-routine-or-line)
   (global-set-key [f4] 'next-error)
   ;; 2004-10-18 Shift with function keys not working via Citrix+ssh
@@ -45,6 +51,15 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
-  ;; In absence of autoload machinery, load other stuff directly
-  (load "chah-ftp" nil t)
+  (when (memq chah-location '(mythic))
+    (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
+    (load "curl-style" nil t)
+    (load "my-style" nil t))
+
+  ;; In absence of autoload machinery, load stuff directly
+  (when (memq chah-location '(pepperpot mythic))
+    ;; RCS support with C-x v... bindings
+    (load "vc" nil t)
+    ;; Shortcuts to FTP sites
+    (load "chah-ftp" nil t))
 )
