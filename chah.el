@@ -51,7 +51,15 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
+  (when (memq chah-location '(mythic))
+    (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
+    (load "curl-style" nil t)
+    (load "my-style" nil t))
+
   ;; In absence of autoload machinery, load stuff directly
-  (if (memq chah-location '(pepperpot mythic))
-      (load "chah-ftp" nil t))
+  (when (memq chah-location '(pepperpot mythic))
+    ;; RCS support with C-x v... bindings
+    (load "vc" nil t)
+    ;; Shortcuts to FTP sites
+    (load "chah-ftp" nil t))
 )
