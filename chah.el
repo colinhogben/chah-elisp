@@ -21,6 +21,9 @@ Move to the specified routine or line number." t nil)
   (setq dired-dwim-target t)		;; Guess other buffer when copying
 
   ;; Colin's extra bindings
+  ;; Make F12 behave like C-x - most important ergonomic improvement
+  (global-set-key [f12] 'Control-X-prefix)
+
   (global-set-key [f2] 'find-routine-or-line)
   (global-set-key [f4] 'next-error)
   ;; 2004-10-18 Shift with function keys not working via Citrix+ssh
@@ -45,6 +48,6 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
-  ;; In absence of autoload machinery, load other stuff directly
+  ;; In absence of autoload machinery, load stuff directly
   (load "chah-ftp" nil t)
 )
