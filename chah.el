@@ -57,7 +57,7 @@ Move to the specified routine or line number." t nil)
     (load "my-style" nil t))
 
   ;; In absence of autoload machinery, load stuff directly
-  (when (memq chah-location '(pepperpot mythic))
+  (when (memq chah-location '(pepperpot mythic dinsdale))
     ;; RCS support with C-x v... bindings
     (load "vc" nil t)
     ;; Shortcuts to FTP sites
