@@ -38,6 +38,7 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(shift f8)] 'font-lock-mode)
   (global-set-key [f9] 'advertised-undo)
   (global-set-key [f10] 'kill-whole-line)
+  (global-set-key [(shift f11)] 'manual-entry)
   (global-set-key [f12 ?_] 'bury-buffer)
   (global-set-key [f12 return] 'shell)
   (global-set-key [f12 ?F] 'find-file-at-point)
@@ -51,7 +52,7 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
-  (when (memq chah-location '(mythic))
+  (when (memq chah-location '(mythic dinsdale))
     (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
     (load "curl-style" nil t)
     (load "my-style" nil t))
