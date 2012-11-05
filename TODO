@@ -1,5 +1,2 @@
-* Get find-next etc. (f7, f3 bindings)
-* join line to prev (shift f5)
-* f12 v $ -> ediff-revision
-* kp-end kp-next as forward/backward word
-* f12 / j  and  f12 j j  for point-to-register, jump-to-register
+Features in one or more emacs to be made universal
+* prev/next screenful

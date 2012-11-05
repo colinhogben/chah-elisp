@@ -19,6 +19,8 @@ With prefix agrument, kill that many lined from point." t nil)
   (autoload (quote find-routine-or-line) "findrout" "\
 Move to the specified routine or line number." t nil)
 
+  (load "search-again" nil t)
+
   ;; Other preferences
   (setq require-final-newline 'ask)	;; Check when writing with no final \n
   (setq dired-dwim-target t)		;; Guess other buffer when copying
@@ -28,6 +30,8 @@ Move to the specified routine or line number." t nil)
   (global-set-key [f12] 'Control-X-prefix)
 
   (global-set-key [f2] 'find-routine-or-line)
+  (global-set-key [f3] 're-search-forward-again)
+  (global-set-key [(shift f3)] 're-search-forward-new)
   (global-set-key [f4] 'next-error)
   ;; 2004-10-18 Shift with function keys not working via Citrix+ssh
   (global-set-key [(shift f4)] 'compile)
@@ -35,6 +39,8 @@ Move to the specified routine or line number." t nil)
   (global-set-key [(shift f5)] 'delete-indentation)
   (global-set-key [f6] 'downcase-word)
   (global-set-key [(shift f6)] 'upcase-word)
+  (global-set-key [f7] 'search-forward-again)
+  (global-set-key [(shift f7)] 'search-forward-new)
   (global-set-key [f8] 'comment-block)
   (global-set-key [(shift f8)] 'font-lock-mode)
   (global-set-key [f9] 'advertised-undo)
@@ -58,6 +64,11 @@ Move to the specified routine or line number." t nil)
   (define-key esc-map "?" 'what-line)
   (define-key esc-map [return] 'back-to-indentation)
   (define-key esc-map "\C-M" 'back-to-indentation)
+
+  (define-key ctl-x-map "/" 'point-to-register)
+  (define-key ctl-x-map "j" 'jump-to-register)
+
+  (eval-after-load "vc" '(define-key vc-prefix-map "$" 'ediff-revision))
 
   (when (memq chah-location '(mythic dinsdale))
     (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
