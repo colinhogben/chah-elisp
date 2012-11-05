@@ -32,6 +32,7 @@ Move to the specified routine or line number." t nil)
   ;; 2004-10-18 Shift with function keys not working via Citrix+ssh
   (global-set-key [(shift f4)] 'compile)
   (global-set-key [f5] 'set-mark-command)
+  (global-set-key [(shift f5)] 'delete-indentation)
   (global-set-key [f6] 'downcase-word)
   (global-set-key [(shift f6)] 'upcase-word)
   (global-set-key [f8] 'comment-block)
@@ -46,11 +47,16 @@ Move to the specified routine or line number." t nil)
   (global-set-key [select] 'end-of-buffer) ;End
   (global-set-key [delete] 'backward-delete-char-untabify)
   (global-set-key [kp-1] 'backward-word)
+  (global-set-key [kp-end] 'backward-word)
   (global-set-key [kp-3] 'forward-word)
+  (global-set-key [kp-next] 'forward-word)
   (global-set-key [(meta escape) \[ \5 \~] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta escape) \[ \6 \~] 'scroll-other-window) ;Alt-PgDn
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
+
+  (define-key esc-map "?" 'what-line)
+  (define-key esc-map [return] 'back-to-indentation)
 
   (when (memq chah-location '(mythic dinsdale))
     (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
