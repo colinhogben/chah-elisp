@@ -57,6 +57,7 @@ Move to the specified routine or line number." t nil)
 
   (define-key esc-map "?" 'what-line)
   (define-key esc-map [return] 'back-to-indentation)
+  (define-key esc-map "\C-M" 'back-to-indentation)
 
   (when (memq chah-location '(mythic dinsdale))
     (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
