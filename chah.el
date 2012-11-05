@@ -70,7 +70,7 @@ Move to the specified routine or line number." t nil)
 
   (eval-after-load "vc" '(define-key vc-prefix-map "$" 'ediff-revision))
 
-  (when (memq chah-location '(mythic dinsdale))
+  (when (memq chah-location '(mythic))
     (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
     (load "curl-style" nil t)
     (load "my-style" nil t))
