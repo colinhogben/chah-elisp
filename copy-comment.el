@@ -1,3 +1,19 @@
+;;=======================================================================
+;;	Copy comments between windows
+;;=======================================================================
+
+;;;###autoload
+(defun copy-comment-to-other-window ()
+  "Copy a comment from one window to another, adjusting for major mode."
+  (interactive)
+  (let ((comment (or (grab-comment)
+		     (error "No comment on this line"))))
+    (other-window 1)
+    (if (eq major-mode 'c-mode)
+	(c-indent-for-comment)
+      (indent-for-comment))
+    (insert comment)
+    (end-of-line)))
 
 (defun grab-comment ()
   "Extract the text of a comment."
@@ -15,16 +31,3 @@
 	     (search-forward comment-end eol t)
 	     (setq eoc (- (point) (length comment-end))))
 	(buffer-substring boc (or eoc eol))))))
-
-;;;###autoload
-(defun copy-comment-to-other-window ()
-  "Copy a comment from one window to another, adjusting for major mode."
-  (interactive)
-  (let ((comment (or (grab-comment)
-		     (error "No comment on this line"))))
-    (other-window 1)
-    (if (eq major-mode 'c-mode)
-	(c-indent-for-comment)
-      (indent-for-comment))
-    (insert comment)
-    (end-of-line)))
