@@ -50,6 +50,7 @@
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
   (define-key esc-map "?" 'what-line)
+  (define-key esc-map ":" 'copy-comment-to-other-window)
   (define-key esc-map [return] 'back-to-indentation)
   (define-key esc-map "\C-M" 'back-to-indentation)
 
@@ -59,7 +60,8 @@
   (define-key ctl-x-map "W" 'write-region)
   (define-key ctl-x-map "_" 'bury-buffer)
   (define-key ctl-x-map "%" 'query-replace-regexp)
-  (define-key ctl-x-map [return] 'shell)
+  (define-key ctl-x-map [return] 'find-shell)
+  (define-key ctl-x-map "\C-M" 'find-shell)
 
   (eval-after-load "vc" '(define-key vc-prefix-map "$" 'ediff-revision))
 
