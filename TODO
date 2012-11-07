@@ -1,2 +1,14 @@
 Features in one or more emacs to be made universal
-* prev/next screenful
+* prev/next windowful
+* M-: copy-comment-to-other-window - copy-comment.el
+* M-! shell-command-dir - command-dir.el
+* C-x W write-region
+* C-x I insert-source - ins-source.el
+* C-x _ bury-buffer
+* C-x % query-replace-regexp
+* C-x + increment-region - incr.el
+* C-x C-m find-shell - find-shell.el
+* S-insert complete-filename - file-completion.el
+* C-u eval-expression - chah-misc.el
+* ediff-test - chah-misc.el
+* new-shell - new-shell.el
