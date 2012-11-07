@@ -9,17 +9,8 @@
   "Pull in chah definitions."
   (interactive)
 
-  ;; Should generate autoloads for elisp ?
-  (autoload (quote comment-block) "comment-block" "\
-Insert a comment block for use in routine headers, etc.
-If THICK is non-nil then use === rather than ---." t nil)
-  (autoload (quote kill-whole-line) "kill-line" "\
-Kill the whole of the current line.
-With prefix agrument, kill that many lined from point." t nil)
-  (autoload (quote find-routine-or-line) "findrout" "\
-Move to the specified routine or line number." t nil)
-
-  (load "search-again" nil t)
+  ;; Load the autoload file, if it exists
+  (load "ch-auto" t)
 
   ;; Other preferences
   (setq require-final-newline 'ask)	;; Check when writing with no final \n

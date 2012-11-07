@@ -4,6 +4,7 @@
 
 (require 'shell)
 
+;;;###autoload
 (defun new-shell (&optional bufname)
   "Run an inferior shell, with I/O through buffer BUFNAME.
 Like shell (q.v.), but you supply the buffer name."
