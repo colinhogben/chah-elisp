@@ -46,9 +46,6 @@ Move to the specified routine or line number." t nil)
   (global-set-key [f9] 'advertised-undo)
   (global-set-key [f10] 'kill-whole-line)
   (global-set-key [(shift f11)] 'manual-entry)
-  (global-set-key [f12 ?_] 'bury-buffer)
-  (global-set-key [f12 return] 'shell)
-  (global-set-key [f12 ?F] 'find-file-at-point)
   (global-set-key [find] 'beginning-of-buffer) ;Home
   (global-set-key [select] 'end-of-buffer) ;End
   (global-set-key [delete] 'backward-delete-char-untabify)
@@ -67,6 +64,11 @@ Move to the specified routine or line number." t nil)
 
   (define-key ctl-x-map "/" 'point-to-register)
   (define-key ctl-x-map "j" 'jump-to-register)
+  (define-key ctl-x-map "F" 'find-file-at-point)
+  (define-key ctl-x-map "W" 'write-region)
+  (define-key ctl-x-map "_" 'bury-buffer)
+  (define-key ctl-x-map "%" 'query-replace-regexp)
+  (define-key ctl-x-map [return] 'shell)
 
   (eval-after-load "vc" '(define-key vc-prefix-map "$" 'ediff-revision))
 
