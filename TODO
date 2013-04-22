@@ -1,4 +1,4 @@
-Features in one or more emacs to be made universal
+Features in one or more emacs, to be made universal
 * prev/next windowful
 * M-! shell-command-dir - command-dir.el
 * C-x I insert-source - ins-source.el
