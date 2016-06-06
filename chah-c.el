@@ -10,14 +10,15 @@
   (setq comment-line-start "/*--- ")
   (make-local-variable 'comment-line-start-skip)
   (setq comment-line-start-skip "/\\*-* *")
-  (cond
-   ((or (string-match "/micropython" (buffer-file-name)))
-    (progn
-      (setq c-basic-offset 4)
-      (setq indent-tabs-mode nil)))))
+  ;; Some projects have different requirements
+  (when (string-match "/micropython" (buffer-file-name))
+    (setq c-basic-offset 4)
+    (setq indent-tabs-mode nil)
+    (setq comment-line-start "// ")
+    (setq comment-line-start-skip "// *")))
 
-(define-key c-mode-map "\M-;" 'c-indent-for-comment)
-(define-key c-mode-map [just] 'c-fill-paragraph)
+(or (fboundp 'comment-dwim)		; In newer emacsen
+    (define-key c-mode-map "\M-;" 'c-indent-for-comment))
 (define-key c-mode-map "" 'newline-and-indent)
 
 (defun c-indent-for-comment ()
