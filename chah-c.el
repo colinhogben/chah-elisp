@@ -11,7 +11,8 @@
   (make-local-variable 'comment-line-start-skip)
   (setq comment-line-start-skip "/\\*-* *")
   ;; Some projects have different requirements
-  (when (string-match "/micropython" (buffer-file-name))
+  (when (or (string-match "/micropython" (buffer-file-name))
+	    (string-match "/mbed" (buffer-file-name)))
     (setq c-basic-offset 4)
     (setq indent-tabs-mode nil)
     (setq comment-line-start "// ")
