@@ -65,6 +65,12 @@
 
   (eval-after-load "vc" '(define-key vc-prefix-map "$" 'ediff-revision))
 
+  (condition-case err
+      (progn
+	(server-start)
+	(setenv "EDITOR" "emacsclient"))
+    (error (message "Starting server: %s" (error-message-string err))))
+
   (when (memq chah-location '(mythic))
     (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode)) ; Perl tests
     (load "curl-style" nil t)
