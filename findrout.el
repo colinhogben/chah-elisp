@@ -191,3 +191,18 @@ If found, the point will be placed following the routine name."
       (progn
 	(goto-char here)
 	(error "Routine %s not found" name)))))
+
+(defun mimic-find-routine (name)
+  "Find the specified function or class name in the current buffer.
+If found, the point will be placed following the routine name."
+  (interactive "sFind routine: ")
+  (let* ((here (point))
+	 (case-fold-search t))
+    (goto-char (point-min))
+    (if (re-search-forward
+	 (concat "^[ \t]*sub\\(r\\(outine\\)?\\)?-beg\\(in\\)?[ \t]+" (regexp-quote name))
+	 (point-max) t)
+	(push-mark here)
+      (progn
+	(goto-char here)
+	(error "Routine %s not found" name)))))
