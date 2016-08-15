@@ -12,9 +12,14 @@
   (setq comment-line-start-skip "/\\*-* *")
   ;; Some projects have different requirements
   (when (or (string-match "/micropython" (buffer-file-name))
-	    (string-match "/mbed" (buffer-file-name)))
+	    (string-match "/mbed" (buffer-file-name))
+	    (string-match "/p-csl4" (buffer-file-name))
+	    (string-match "/d-xsl8" (buffer-file-name))
+	    (string-match "/xsl8" (buffer-file-name)))
     (setq c-basic-offset 4)
-    (setq indent-tabs-mode nil)
+    (setq indent-tabs-mode nil))
+  (when (or (string-match "/micropython" (buffer-file-name))
+	    (string-match "/mbed" (buffer-file-name)))
     (setq comment-line-start "// ")
     (setq comment-line-start-skip "// *")))
 
