@@ -14,6 +14,7 @@
   (when (or (string-match "/micropython" (buffer-file-name))
 	    (string-match "/mbed" (buffer-file-name))
 	    (string-match "/p-csl4" (buffer-file-name))
+	    (string-match "/p-vxpdf" (buffer-file-name))
 	    (string-match "/d-xsl8" (buffer-file-name))
 	    (string-match "/xsl8" (buffer-file-name)))
     (setq c-basic-offset 4)
