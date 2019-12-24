@@ -76,6 +76,12 @@
     (load "curl-style" nil t)
     (load "my-style" nil t))
 
+  (when (memq chah-location '(jac linux))
+    (if (fboundp 'conf-mode)
+	(add-to-list 'auto-mode-alist
+		     ;; systemd files
+		     '("\\.\\(service\\|path\||mount\\)$" . conf-mode))))
+
   ;; In absence of autoload machinery, load stuff directly
   (when (memq chah-location '(pepperpot mythic dinsdale))
     ;; RCS support with C-x v... bindings
