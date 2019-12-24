@@ -18,6 +18,7 @@
 	    (string-match "/p-csl4" (buffer-file-name))
 	    (string-match "/ulc4" (buffer-file-name))
 	    (string-match "/kk1rt" (buffer-file-name))
+	    (string-match "/csdn" (buffer-file-name))
 	    (string-match "/p-vxpdf" (buffer-file-name))
 	    (string-match "/d-xsl8" (buffer-file-name))
 	    (string-match "/xsl8" (buffer-file-name)))
