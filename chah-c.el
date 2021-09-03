@@ -22,6 +22,8 @@
 	      (string-match "/csdn" bfn)
 	      (string-match "/p-vxpdf" bfn)
 	      (string-match "/d-xsl8" bfn)
+	      (string-match "/urtc" bfn)
+	      (string-match "/EPICS/" bfn)
 	      (string-match "/xsl8" bfn))
       (setq c-basic-offset 4)
       (setq indent-tabs-mode nil))
