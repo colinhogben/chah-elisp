@@ -76,11 +76,15 @@
     (load "curl-style" nil t)
     (load "my-style" nil t))
 
-  (when (memq chah-location '(jac linux))
+  (when (memq chah-location '(jac linux laptop))
     (if (fboundp 'conf-mode)
 	(add-to-list 'auto-mode-alist
 		     ;; systemd files
-		     '("\\.\\(service\\|path\||mount\\)$" . conf-mode))))
+		     '("\\.\\(service\\|path\||mount\\)$" . conf-mode)))
+    (if (fboundp 'c-mode)
+	(add-to-list 'auto-mode-alist
+		     ;; arduino sketches
+		     '("\\.ino$" . c-mode))))
 
   ;; In absence of autoload machinery, load stuff directly
   (when (memq chah-location '(pepperpot mythic dinsdale))
