@@ -33,7 +33,7 @@ If THICK is non-nil then use === rather than ---."
                          comment-block-tokens-alist)) ; Search the alist
 	     '("#"))))				; Default token
 
-(defun make-comment-block (thick start &optional end &optional mid)
+(defun make-comment-block (thick start &optional end mid)
   (let ((ch (if thick ?= ?-)))
     (beginning-of-line)
     (insert "\n\n\n")
