@@ -6,7 +6,7 @@
   "Move to the specified routine or line number."
   (interactive (find-routine-interactive "Routine or line: "))
   (if (string-match "^[0-9]+$" dest)
-      (goto-line (string-to-int dest))
+      (goto-line (string-to-number dest))
     (find-routine dest)))
 
 ;;;###autoload
