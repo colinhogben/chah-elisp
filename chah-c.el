@@ -10,6 +10,11 @@
   (setq comment-line-start "/*--- ")
   (make-local-variable 'comment-line-start-skip)
   (setq comment-line-start-skip "/\\*-* *")
+  ; Some syntactic elements are unknown to 19.34
+  (if (assq 'innamespace c-offsets-alist)
+      (c-set-offset 'innamespace '0))
+  (if (assq 'inextern-lang c-offsets-alist)
+      (c-set-offset 'inextern-lang '0))
   ;; Some projects have different requirements
   (let ((bfn (or (buffer-file-name) ""))) ; nil for some synthetic buffers
     (cond ((or (string-match "/micropython" bfn)
@@ -29,10 +34,9 @@
 	  ((or (string-match "/EPICS/" bfn))
 	   (setq c-basic-offset 4)
 	   (setq indent-tabs-mode nil)
-	   (setq c-offsets-alist
-		 (append '((arglist-intro . 8)
-			   (arglist-cont-nonempty . 8)
-			   (arglist-cont . 0)) c-offsets-alist)))
+	   (c-set-offset 'arglist-intro 8)
+	   (c-set-offset 'arglist-cont-nonempty 8)
+	   (c-set-offset 'arglist-cont 0))
 	  ((or (string-match "/atto" bfn)
 	       (string-match "/f2c/" bfn))
 	   (setq c-basic-offset 8)
