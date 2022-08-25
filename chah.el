@@ -62,6 +62,7 @@
   (define-key ctl-x-map "%" 'query-replace-regexp)
   (define-key ctl-x-map [return] 'find-shell)
   (define-key ctl-x-map "\C-M" 'find-shell)
+  (define-key ctl-x-map "I" 'insert-source)
 
   (eval-after-load "vc" '(define-key vc-prefix-map "$" 'ediff-revision))
 
