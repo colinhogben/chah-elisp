@@ -1,3 +1,7 @@
+(defvar insert-source-directory nil
+  "Directory containing files used by \\[insert-source]")
+;; N.B. source-directory indicates where emacs was built.
+;; Inadvertently used by thos module - will attempt to phase it out.
 (defvar source-directory nil
   "Directory containing files used by \\[insert-source]")
 
@@ -5,7 +9,8 @@
 (defun insert-source (filename)
   "Insert source file FILENAME from source-directory."
   (interactive (list (read-file-name "File: "
-				     (or source-directory
+				     (or insert-source-directory
+					 source-directory ; deprecated
 					 default-directory)
 				     nil
 				     t)))
