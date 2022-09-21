@@ -1,5 +1,5 @@
 ;;-----------------------------------------------------------------------
-;;	Preferences for C code
+;;	Preferences for C and C++ code
 ;;-----------------------------------------------------------------------
 ;;;###autoload
 (defun chah-c-style ()
@@ -44,6 +44,11 @@
 	  ((or (string-match "/p-" bfn)
 	       (string-match "/r-" bfn))
 	   (setq c-basic-offset 2))
+	  ((or (string-match "/das2.0/" bfn))
+	   (setq indent-tabs-mode t)
+	   (setq tab-width 4)
+	   (setq c-basic-offset 4)
+	   (add-clang-format-save-hook))
 	  (t
 	   (setq c-basic-offset 4)
 	   (setq indent-tabs-mode nil)))
@@ -55,6 +60,31 @@
 (or (fboundp 'comment-dwim)		; In newer emacsen
     (define-key c-mode-map "\M-;" 'c-indent-for-comment))
 (define-key c-mode-map "" 'newline-and-indent)
+
+;; From emacs.stackexchange.com 48500
+(defun add-clang-format-save-hook ()
+  "Set a hook to run clang-format on write"
+  (when (find-clang-format '("clang-format.el"
+			     "clang-format/clang-format.el"
+			     "clang-format-10/clang-format.el"))
+    (add-hook 'before-save-hook
+	      (lambda ()
+		(when (locate-dominating-file "." ".clang-format")
+		  (clang-format-buffer))
+		;; Continue saving
+		nil)
+	      nil
+	      ;; Buffer local hook
+	      t)))
+
+(defun find-clang-format (paths)
+  (if (null paths)
+      nil
+    (condition-case err
+	(progn
+	  (require 'clang-format (car paths))
+	  t)
+      (error (find-clang-format (cdr paths))))))
 
 (defun c-indent-for-comment ()
   "Indent this line's comment or insert an empty comment.
