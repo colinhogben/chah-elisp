@@ -52,6 +52,10 @@
 	   (when (or (string-match "/das2.0/DAS_Application/" bfn)
 		     (string-match "/das2.0/HMI/" bfn))
 	     (add-clang-format-save-hook)))
+	  ((or (string-match "/business-logic/" bfn))
+	   (setq indent-tabs-mode t)
+	   (setq tab-width 4)
+	   (setq c-basic-offset 4))
 	  (t
 	   (setq c-basic-offset 4)
 	   (setq indent-tabs-mode nil)))
