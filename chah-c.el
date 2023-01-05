@@ -48,7 +48,10 @@
 	   (setq indent-tabs-mode t)
 	   (setq tab-width 4)
 	   (setq c-basic-offset 4)
-	   (add-clang-format-save-hook))
+	   ;; Leave Crystal's tabbing in DAS_HMI & my old in Lib/App/Util
+	   (when (or (string-match "/das2.0/DAS_Application/" bfn)
+		     (string-match "/das2.0/HMI/" bfn))
+	     (add-clang-format-save-hook)))
 	  (t
 	   (setq c-basic-offset 4)
 	   (setq indent-tabs-mode nil)))
