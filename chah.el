@@ -77,6 +77,14 @@
     (load "curl-style" nil t)
     (load "my-style" nil t))
 
+  (when (memq chah-location '(jac laptop win)) ; or based on version?
+    ;; See SO 3072648
+    (require 'ansi-color)
+    (defun colourise-compilation-buffer ()
+      (let ((inhibit-read-only t))
+	(ansi-color-apply-on-region (point-min) (point-max))))
+    (add-hook 'compilation-filter-hook 'colourise-compilation-buffer))
+
   (when (memq chah-location '(jac linux laptop))
     (if (fboundp 'conf-mode)
 	(add-to-list 'auto-mode-alist
