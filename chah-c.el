@@ -53,6 +53,8 @@
 		     (string-match "/das2.0/HMI/" bfn))
 	     (add-clang-format-save-hook)))
 	  ((or (string-match "/business-logic/" bfn)
+	       (string-match "/bl2/" bfn)
+	       (string-match "/cpp-doodles/" bfn)
 	       (string-match "/pmac-tests/" bfn))
 	   (setq indent-tabs-mode t)
 	   (setq tab-width 4)
