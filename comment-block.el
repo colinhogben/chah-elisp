@@ -16,6 +16,7 @@
     (tex-mode "%")
     (latex-mode "%")
     (c++-mode "//")
+    (js-mode "//")
     (asm-mode "*")
     (mimic-mode "com ")
     (sgml-mode "<!--*" "-->" "    *"))
