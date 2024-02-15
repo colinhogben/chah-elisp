@@ -49,6 +49,11 @@
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta next)] 'scroll-other-window) ;Alt-PgDn
 
+  ;; OVDC -> chooser key weirdness
+  (global-set-key [f33] 'backward-word)	; KP-1
+  (global-set-key [f35] 'forward-word)	; KP-3
+  (global-set-key [SunF37] 'Control-X-prefix) ; F12
+
   (define-key esc-map "?" 'what-line)
   (define-key esc-map ":" 'copy-comment-to-other-window)
   (define-key esc-map [return] 'back-to-indentation)
