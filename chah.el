@@ -19,6 +19,7 @@
   ;; Colin's extra bindings
   ;; Make F12 behave like C-x - most important ergonomic improvement
   (global-set-key [f12] 'Control-X-prefix)
+  (global-set-key [SunF37] 'Control-X-prefix)
 
   (global-set-key [f2] 'find-routine-or-line)
   (global-set-key [f3] 're-search-forward-again)
@@ -37,13 +38,16 @@
   (global-set-key [f9] 'advertised-undo)
   (global-set-key [f10] 'kill-whole-line)
   (global-set-key [(shift f11)] 'manual-entry)
+  (global-set-key [(shift SunF36)] 'manual-entry)
   (global-set-key [find] 'beginning-of-buffer) ;Home
   (global-set-key [select] 'end-of-buffer) ;End
   (global-set-key [delete] 'backward-delete-char-untabify)
   (global-set-key [kp-1] 'backward-word)
   (global-set-key [kp-end] 'backward-word)
+  (global-set-key [f33] 'backward-word)
   (global-set-key [kp-3] 'forward-word)
   (global-set-key [kp-next] 'forward-word)
+  (global-set-key [f35] 'forward-word)
   (global-set-key [(meta escape) \[ \5 \~] 'scroll-other-window-down) ;Alt-PgUp
   (global-set-key [(meta escape) \[ \6 \~] 'scroll-other-window) ;Alt-PgDn
   (global-set-key [(meta prior)] 'scroll-other-window-down) ;Alt-PgUp
