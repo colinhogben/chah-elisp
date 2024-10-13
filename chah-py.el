@@ -8,6 +8,10 @@
     (cond ((or (string-match "/dsm-pcs/codegen/" bfn))
 	   (setq python-indent-offset 8)
 	   (setq indent-tabs-mode t))
+	  ((or (string-match "/pystrace/" bfn))
+	   (setq tab-width 4)
+	   (setq python-indent-offset 4)
+	   (setq indent-tabs-mode t))
 	  (t
 	   (setq python-indent-offset 4)
 	   (setq indent-tabs-mode nil)))))
