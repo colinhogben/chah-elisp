@@ -19,6 +19,7 @@
     (js-mode "//")
     (asm-mode "*")
     (mimic-mode "com ")
+    (csp-mode "--")
     (sgml-mode "<!--*" "-->" "    *"))
   "Alist of modes and the start, end and middle tokens to use")
 
