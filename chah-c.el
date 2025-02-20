@@ -60,6 +60,11 @@
 	   (setq indent-tabs-mode t)
 	   (setq tab-width 4)
 	   (setq c-basic-offset 4))
+	  ;; mastu project has many indentation styles
+	  ;;((or (string-match "/mastu/" bfn))
+	  ;; (setq indent-tabs-mode t)
+	  ;; (setq tab-width 8)
+	  ;; (setq c-basic-offset 8))
 	  (t
 	   (setq c-basic-offset 4)
 	   (setq indent-tabs-mode nil)))
