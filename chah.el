@@ -12,6 +12,18 @@
   ;; Load the autoload file, if it exists
   (load "ch-auto" t)
 
+  ;; Set mode hooks
+  (when (fboundp 'chah-c-style)
+    (add-hook 'c-mode-hook 'chah-c-style)
+    (add-hook 'c++-mode-hook 'chah-c-style))
+  (when (fboundp 'chah-py-style)
+    (add-hook 'python-mode-hook 'chah-py-style))
+  (when (fboundp 'chah-cmake-style)
+    (add-hook 'cmake-mode-hook 'chah-cmake-style))
+  (when (fboundp 'chah-html-style)
+    (add-hook 'html-mode-hook 'chah-html-style)
+    (add-hook 'mhtml-mode-hook 'chah-html-style))
+
   ;; Other preferences
   (setq require-final-newline 'ask)	;; Check when writing with no final \n
   (setq dired-dwim-target t)		;; Guess other buffer when copying

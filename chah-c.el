@@ -1,77 +1,34 @@
 ;;-----------------------------------------------------------------------
 ;;	Preferences for C and C++ code
 ;;-----------------------------------------------------------------------
+(c-add-style "chah-base"
+	     '((c-basic-offset . 4)
+	       (indent-tabs-mode . nil)
+	       (comment-column . 40)
+	       (comment-line-start . "/*--- ")
+	       (comment-line-start-skip . "/\\*-* *")
+	       (c-offsets-alist
+		. (
+		   ;; C++
+		   (innamespace . 0)
+		   (inextern-lang . 0)	; extern "C" {
+		   ))
+	       ))
+(c-add-style "chah-pcs"
+	     '("chah-base"
+	       (c-basic-offset . 3)
+	       ))
+
 ;;;###autoload
 (defun chah-c-style ()
-  (setq comment-column 40)
-  (make-local-variable 'indent-tabs-mode)
-  (setq indent-tabs-mode t)			; Buffer-local
-  (make-local-variable 'comment-line-start)
-  (setq comment-line-start "/*--- ")
-  (make-local-variable 'comment-line-start-skip)
-  (setq comment-line-start-skip "/\\*-* *")
-  ; Some syntactic elements are unknown to 19.34
-  (if (assq 'innamespace c-offsets-alist)
-      (c-set-offset 'innamespace '0))
-  (if (assq 'inextern-lang c-offsets-alist)
-      (c-set-offset 'inextern-lang '0))
-  ;; Some projects have different requirements
   (let ((bfn (or (buffer-file-name) ""))) ; nil for some synthetic buffers
-    (cond ((or (string-match "/micropython" bfn)
-	       (string-match "/mbed" bfn)
-	       (string-match "/mcurses" bfn)
-	       (string-match "/incurses" bfn)
-	       (string-match "/p-csl4" bfn)
-	       (string-match "/ulc4" bfn)
-	       (string-match "/kk1rt" bfn)
-	       (string-match "/csdn" bfn)
-	       (string-match "/p-vxpdf" bfn)
-	       (string-match "/d-xsl8" bfn)
-	       (string-match "/urtc" bfn)
-	       (string-match "/xsl8" bfn))
-	   (setq c-basic-offset 4)
-	   (setq indent-tabs-mode nil))
-	  ((or (string-match "/EPICS/" bfn))
-	   (setq c-basic-offset 4)
-	   (setq indent-tabs-mode nil)
-	   (c-set-offset 'arglist-intro 8)
-	   (c-set-offset 'arglist-cont-nonempty 8)
-	   (c-set-offset 'arglist-cont 0))
-	  ((or (string-match "/atto" bfn)
-	       (string-match "/f2c/" bfn))
-	   (setq c-basic-offset 8)
-	   (setq indent-tabs-mode t))
-	  ((or (string-match "/p-" bfn)
-	       (string-match "/r-" bfn)
-	       (string-match "/dtacq/LOWLATENCY/" bfn))
-	   (setq c-basic-offset 2))
-	  ((or (string-match "/das2.0/" bfn))
-	   (setq indent-tabs-mode t)
-	   (setq tab-width 4)
-	   (setq c-basic-offset 4)
-	   ;; Leave Crystal's tabbing in DAS_HMI & my old in Lib/App/Util
-	   (when (or (string-match "/das2.0/DAS_Application/" bfn)
-		     (string-match "/das2.0/HMI/" bfn))
-	     (add-clang-format-save-hook)))
-	  ((or (string-match "/business-logic/" bfn)
-	       (string-match "/bl2/" bfn)
-	       (string-match "/cpp-doodles/" bfn)
-	       (string-match "/pmac-tests/" bfn))
-	   (setq indent-tabs-mode t)
-	   (setq tab-width 4)
-	   (setq c-basic-offset 4))
-	  ;; mastu project has many indentation styles
-	  ;;((or (string-match "/mastu/" bfn))
-	  ;; (setq indent-tabs-mode t)
-	  ;; (setq tab-width 8)
-	  ;; (setq c-basic-offset 8))
+    (cond ((string-match "/mpu/" bfn)
+	   (c-set-style "chah-base"))
+	  ((or (string-match "/mastu/" bfn)
+	       (string-match "/nullpcs/" bfn))
+	   (c-set-style "chah-pcs"))
 	  (t
-	   (setq c-basic-offset 4)
-	   (setq indent-tabs-mode nil)))
-    (when (or (string-match "/micropython" bfn)
-	      (string-match "/mbed" bfn))
-      (setq comment-line-start "// ")
-      (setq comment-line-start-skip "// *"))))
+	   (c-set-style "chah-base")))))
 
 (or (fboundp 'comment-dwim)		; In newer emacsen
     (define-key c-mode-map "\M-;" 'c-indent-for-comment))
