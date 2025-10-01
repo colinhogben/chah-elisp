@@ -5,7 +5,7 @@
 (defun increment-region (start end &optional increment)
   (interactive "r\nP")
   (let* ((old (buffer-substring start end))
-	 (iold (string-to-int old))
+	 (iold (string-to-number old))
 	 (iinc (if (null increment) 1 increment))
 	 (inew (+ iold iinc))
 	 (new (int-to-string inew)))
