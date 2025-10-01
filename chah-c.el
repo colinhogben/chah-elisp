@@ -22,7 +22,9 @@
 ;;;###autoload
 (defun chah-c-style ()
   (let ((bfn (or (buffer-file-name) ""))) ; nil for some synthetic buffers
-    (cond ((string-match "/mpu/" bfn)
+    (cond (;; Submodules of mastu
+	   (or (string-match "/mpu/" bfn)
+	       (string-match "/dtacq-ioproc/" bfn))
 	   (c-set-style "chah-base"))
 	  ((or (string-match "/mastu/" bfn)
 	       (string-match "/nullpcs/" bfn))
