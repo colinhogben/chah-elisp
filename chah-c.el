@@ -12,6 +12,7 @@
 		   ;; C++
 		   (innamespace . 0)
 		   (inextern-lang . 0)	; extern "C" {
+		   (inline-open . 0)	; inline method open brace
 		   ))
 	       ))
 (c-add-style "chah-pcs"
