@@ -23,15 +23,20 @@
 ;;;###autoload
 (defun chah-c-style ()
   (let ((bfn (or (buffer-file-name) ""))) ; nil for some synthetic buffers
-    (cond (;; Submodules of mastu
-	   (or (string-match "/mpu/" bfn)
-	       (string-match "/dtacq-ioproc/" bfn))
-	   (c-set-style "chah-base"))
-	  ((or (string-match "/mastu/" bfn)
-	       (string-match "/nullpcs/" bfn))
-	   (c-set-style "chah-pcs"))
-	  (t
-	   (c-set-style "chah-base")))))
+    (cond
+     ;; Submodules of mastu first
+     ((or (string-match "/AFHBA404/" bfn))
+      (setq c-basic-offset 4)
+      (setq tab-width 4)
+      (setq indent-tabs-mode t))
+     ((or (string-match "/mpu/" bfn)
+	  (string-match "/dtacq-ioproc/" bfn))
+      (c-set-style "chah-base"))
+     ((or (string-match "/mastu/" bfn)
+	  (string-match "/nullpcs/" bfn))
+      (c-set-style "chah-pcs"))
+     (t
+      (c-set-style "chah-base")))))
 
 (or (fboundp 'comment-dwim)		; In newer emacsen
     (define-key c-mode-map "\M-;" 'c-indent-for-comment))
